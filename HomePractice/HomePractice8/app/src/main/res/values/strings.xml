@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">HomePractice8</string>
+    <string name="holidays">Holidays</string>
+    <string name="adaugare_vacanta">Adaugare vacanta</string>
+    <string name="afisare_vacante">Afisare vacante</string>
 </resources>

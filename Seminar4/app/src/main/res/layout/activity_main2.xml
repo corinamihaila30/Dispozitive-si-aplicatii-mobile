@@ -54,12 +54,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/life_savers_bold"
-        android:text="CheckBox" />
+        android:text="ocupata" />
 
+    <CheckBox
+        android:id="@+id/salvareFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/life_savers_bold"
+        android:text="Disponibil online" />
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Creare camera"
-        />
+        android:text="Creare camera" />
 </LinearLayout>

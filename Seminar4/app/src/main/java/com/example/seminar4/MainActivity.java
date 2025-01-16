@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -19,6 +22,11 @@ import androidx.room.Database;
 import com.example.seminar4.myclasses.Camera;
 import com.example.seminar4.myclasses.CameraDatabase;
 import com.example.seminar4.myclasses.MainActivity3;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +36,8 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
 
     CameraDatabase database=null;
+    DatabaseReference myRef;
+    Boolean disp;
     private List<Camera> listac=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +89,9 @@ public class MainActivity extends AppCompatActivity {
 //                database.getDatabase();
 //
 //            }
-//        });
+//        })
 
+        // Write a message to the database
 
         Button btn5 = findViewById(R.id.mainBtn5);
         btn5.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +99,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(), MainActivity3.class);
                 startActivity(intent);
+            }
+        });
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Camera value  = snapshot.getValue(Camera.class);
+                //Toast.makeText(getApplicationContext(),"s-a modificat",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -105,7 +129,15 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode==RESULT_OK){
                 Camera camera=data.getParcelableExtra("rezervare");
                 listac.add(camera);
+                disp = data.getBooleanExtra("disponibil",false);
+                Log.i("act1", String.valueOf(disp));
 
+                if(disp = true) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    myRef = database.getReference("rezervare");
+                    myRef.child(camera.getTipCamera()).setValue(camera);
+
+                }
             }
         }
     }

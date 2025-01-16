@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Holidays"
+        android:text="@string/holidays"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,12 +22,12 @@
         android:id="@+id/main1_btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adaugare vacanta" />
+        android:text="@string/adaugare_vacanta" />
 
     <Button
         android:id="@+id/main1_btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Afisare vacante" />
+        android:text="@string/afisare_vacante" />
 
 </LinearLayout>

@@ -46,11 +46,15 @@ public class MainActivity2 extends AppCompatActivity {
                 Boolean ocupat = check.isChecked();
                 Camera c=new Camera(denumireS,tipS,nrInt,pretInt,ocupat);
 
+                CheckBox disp = findViewById(R.id.salvareFirebase);
+                Boolean disponibila = disp.isChecked();
+
                 Intent it=new Intent();
                 it.putExtra("rezervare", c);
+                it.putExtra("disponibil",disponibila);
                 setResult(RESULT_OK,it);
                 finish();
-                Toast.makeText(getApplicationContext(),c.toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),c.toString(),Toast.LENGTH_LONG).show();
             }
         });
 
